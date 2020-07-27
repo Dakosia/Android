@@ -26,8 +26,12 @@ public class AddContactActivity extends AppCompatActivity {
         textInputEmail = findViewById(R.id.text_input_email);
     }
 
+    // Валидация
     private boolean validateName() {
         String nameInput = textInputName.getEditText().getText().toString().trim();
+
+        // Проверка пустое ли поле Name
+        // если да, то отображение ошибки снизу
         if (nameInput.isEmpty()) {
             textInputName.setError("Field can't be empty");
             return false;
@@ -39,6 +43,9 @@ public class AddContactActivity extends AppCompatActivity {
 
     private boolean validatePhone() {
         String phoneInput = textInputPhone.getEditText().getText().toString().trim();
+
+        // Проверка пустое ли поле Phone
+        // если да, то отображение ошибки снизу
         if (phoneInput.isEmpty()) {
             textInputPhone.setError("Field can't be empty");
             return false;
@@ -50,6 +57,8 @@ public class AddContactActivity extends AppCompatActivity {
 
     private boolean validateEmail() {
         String emailInput = textInputEmail.getEditText().getText().toString().trim();
+
+        // Если пользователь вводит поле email, проверка соответствует ли введенный email паттерну
         if (!emailInput.isEmpty() && !Patterns.EMAIL_ADDRESS.matcher(emailInput).matches()) {
             textInputEmail.setError("Please enter a valid email address");
             return false;
@@ -69,6 +78,7 @@ public class AddContactActivity extends AppCompatActivity {
         String phoneInput = textInputPhone.getEditText().getText().toString().trim();
         String emailInput = textInputEmail.getEditText().getText().toString().trim();
 
+        // Добавление нового контакта в псевдобазу для отображения в списке RecyclerView
         MainActivity.contacts.add(new Contact(nameInput, surnameInput, phoneInput, emailInput));
         MainActivity.adapter.notifyDataSetChanged();
         finish();

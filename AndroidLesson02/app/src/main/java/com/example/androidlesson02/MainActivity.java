@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.addNewContact:
+                // При выборе пункта меню "Добавить контакт" - переход на AddContactActivity
                 Intent intent2 = new Intent(this, AddContactActivity.class);
                 startActivity(intent2);
                 return true;
